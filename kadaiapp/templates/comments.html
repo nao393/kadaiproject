@@ -23,13 +23,14 @@
         <li>
             <strong>{{ comment.name }}</strong> <span class="comment-date">{{ comment.created_at }}</span>
             <p>{{ comment.content }}</p>
-        </li>
-        <form method="post" action="{% url 'comment_delete' comment.pk %}" style="display:inline;">
+
+            <form method="post" action="{% url 'comment_delete' comment.pk %}" style="display:inline;">
             {% csrf_token %}
             <button type="submit" class="delete-button">削除</button>
-        </form>
-</ul>
+            </form>
+        </li>
     {% endfor %}
+</ul>
 
 <a href="{% url 'index' %}">トップページへ戻る</a>
 {% endblock %}
