@@ -14,6 +14,7 @@ class CommentPageView(CreateView, ListView):
     form_class = CommentForm
     success_url = reverse_lazy("comments")
     ordering = ["-created_at"]
+    login_url = "login"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
