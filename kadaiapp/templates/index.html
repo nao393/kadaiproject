@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% block title %}攻略TOP | 大原ゲーム攻略サイト{% endblock %}
+
+{% block content %}
+
+        <nav class="navbar">
+            <ul>
+                <li><a href="{% url 'index' %}">攻略TOP</a></li>
+                <li><a href="#story">ストーリー</a></li>
+                <li><a href="#events">イベント</a></li>
+                <li><a href="#equipment">装備</a></li>
+                <li><a href="#ranking">最強ランキング</a></li>
+                <li><a href="#characters">キャラ一覧</a></li>
+                <li><a href="{% url 'comments' %}">コメント</a></li>
+            </ul>
+        </nav>
+    <section>
+        <h2>▼目次（タップで移動）</h2>
+        <table>
+            <tr>
+                <td><a href="#latest">最新攻略情報</a></td>
+                <td><a href="#ranking">最強ランキング</a></td>
+                <td><a href="#characters">キャラ</a></td>
+            </tr>
+            <tr>
+                <td><a href="#story">ストーリー</a></td>
+                <td><a href="#equipment">装備</a></td>
+                <td><a href="#events">イベント</a></td>
+            </tr>
+        </table>
+    </section>
+
+    <section id="latest">
+        <h3>最新情報👇</h3>
+        <p>最新情報を表示します。攻略に役立つヒントや新しい発見をチェックしましょう。</p>
+    </section>
+
+    <section id="ranking">
+        <h3>最強ランキング</h3>
+        <p>キャラクターや装備のランキングを掲載。強いキャラクターやおすすめの装備を確認してください。</p>
+    </section>
+
+    <section id="characters">
+        <h3>キャラ一覧</h3>
+        <p>全キャラクターのステータスやスキル情報を網羅。お気に入りのキャラを見つけましょう。</p>
+    </section>
+
+    <section id="story">
+        <h3>ストーリー</h3>
+        <p>ゲームのストーリーを詳細に解説。進行状況や重要なイベントを把握できます。</p>
+    </section>
+
+    <section id="equipment">
+        <h3>装備</h3>
+        <p>装備品の種類や性能を一覧で表示。最適な装備を選ぶための参考にしてください。</p>
+    </section>
+
+    <section id="events">
+        <h3>イベント</h3>
+        <p>現在開催中のイベント情報や攻略方法を紹介。報酬を効率的に獲得しましょう。</p>
+    </section>
+
+    <a href="{% url 'comments' %}" class="comment-page-link">▶ コメントページへ</a>
+{% endblock %}

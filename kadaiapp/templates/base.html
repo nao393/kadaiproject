@@ -1,0 +1,42 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}大原ゲーム攻略サイト{% endblock %}</title>
+    <link href="{% static 'css/style.css' %}" rel="stylesheet" />
+</head>
+
+<body>
+    <header>
+        <div class="container header-container">
+            <h1>大原ゲーム攻略サイト</h1>
+            
+            <!-- ユーザー認証用ナビゲーション -->
+            <div class="auth-links">
+                {% if user.is_authenticated %}
+                    <span class="welcome-text">ようこそ、{{ user.username }} さん</span>
+                    <a href="{% url 'accounts:logout' %}" class="auth-button">ログアウト</a>
+                {% else %}
+                    <a href="{% url 'accounts:signup' %}" class="auth-button">サインアップ</a>
+                    <a href="{% url 'accounts:login' %}" class="auth-button">ログイン</a>
+                {% endif %}
+            </div>
+        </div>
+    </header>
+
+    <main>
+
+        {% block content %}{% endblock %}
+
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 大原ゲーム攻略サイト.</p>
+        </div>
+    </footer>
+</body>
+</html>

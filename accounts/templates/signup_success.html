@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block title %}サインアップ完了 | 大原ゲーム攻略サイト{% endblock %}
+
+{% block content %}
+<div class="auth-container">
+    <h2>サインアップ完了！</h2>
+    <p>アカウントが正常に作成されました。</p>
+    <p>ログインして、サイトをご利用ください。</p>
+
+    <a href="{% url 'accounts:login' %}" class="auth-button">ログインページへ</a>
+</div>
+{% endblock %}

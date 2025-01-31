@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}サインアップ | 大原ゲーム攻略サイト{% endblock %}
+
+{% block content %}
+<div class="auth-container">
+    <h2>サインアップ（新規登録）</h2>
+    
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        
+        <button type="submit" class="auth-button">アカウントを作成</button>
+    </form>
+
+    <p>すでにアカウントをお持ちですか？ </p>
+    <p><a href="{% url 'accounts:login' %}">ログインはこちら</a></p>
+    <p><a href="{% url 'index' %}">トップページへ戻る</a></p>
+</div>
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block title %}ログアウト | 大原ゲーム攻略サイト{% endblock %}
+
+{% block content %}
+<div class="auth-container">
+    <h2>ログアウト</h2>
+    <p>ログアウトしました。</p>
+    <a href="{% url 'accounts:login' %}" class="auth-button">ログインページへ</a>
+</div>
+{% endblock %}

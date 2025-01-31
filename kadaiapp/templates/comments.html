@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}コメントページ | 大原ゲーム攻略サイト{% endblock %}
+
+{% block content %}
+    <h2>コメント一覧</h2>
+
+    <!-- コメント投稿フォーム -->
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="comment-submit">書き込む</button>
+    </form>
+
+    <!-- 投稿されたコメントを表示 -->
+    <ul class="comment-list">
+        {% for comment in comments %}
+            <li>
+                <strong>{{ comment.name }}</strong> <span class="comment-date">{{ comment.created_at }}</span>
+                <p>{{ comment.content }}</p>
+            </li>
+
+                <!-- 削除ボタン -->
+                <form method="post" action="{% url 'comment_delete' comment.pk %}" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="submit" class="delete-button">削除</button>
+                </form>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <a href="{% url 'index' %}">トップページへ戻る</a>
+{% endblock %}
