@@ -27,8 +27,9 @@
         <form method="post" action="{% url 'comment_delete' comment.pk %}" style="display:inline;">
             {% csrf_token %}
             <button type="submit" class="delete-button">削除</button>
-    </ul>
-{% endfor %}
+        </form>
+</ul>
+    {% endfor %}
 
 <a href="{% url 'index' %}">トップページへ戻る</a>
 {% endblock %}
