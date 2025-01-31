@@ -14,7 +14,7 @@
         <button type="submit" class="comment-submit">コメントを書く</button>
     </form>
 {% else %}
-    <p>コメントを書くには、<a href="{% url 'login' %}">ログイン</a>してください。</p>
+    <p>コメントを書くには、<a href="{% url 'accounts:login' %}">ログイン</a>してください。</p>
 {% endif %}
 
 <!-- コメント一覧表示 -->
