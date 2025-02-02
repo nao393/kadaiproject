@@ -1,7 +1,6 @@
 from django.shortcuts import get_object_or_404
 from django.http import HttpResponseRedirect
 from django.http import HttpResponseForbidden
-from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import TemplateView, CreateView, ListView, DeleteView
 from django.urls import reverse_lazy
 from .models import Comment
@@ -16,14 +15,19 @@ class CommentPageView(CreateView, ListView):
     form_class = CommentForm
     success_url = reverse_lazy("comments")
     ordering = ["-created_at"]
-    login_url = "login"
+
+    def form_valid(self, form):
+        """ログインユーザーをコメントの投稿者に設定"""
+        form.instance.user = self.request.user
+        return super().form_valid(form)
+
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["comments"] = Comment.objects.all().order_by("-created_at")
         return context
 
-class CommentDeleteView(LoginRequiredMixin, DeleteView):
+class CommentDeleteView(DeleteView):
     model = Comment
     success_url = reverse_lazy("comments")
 

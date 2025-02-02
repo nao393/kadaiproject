@@ -24,7 +24,7 @@
             <strong>{{ comment.name }}</strong> <span class="comment-date">{{ comment.created_at }}</span>
             <p>{{ comment.content }}</p>
 
-            {% if user.is_authenticated and user == comment.user %}  {# ログインしていて、投稿者なら表示 #}
+            {% if user.is_authenticated and user == comment.user %}  {# ログインしていて、投稿者なら削除可 #}
                 <form method="post" action="{% url 'comment_delete' comment.pk %}" style="display:inline;">
                     {% csrf_token %}
                     <button type="submit" class="delete-button">削除</button>
