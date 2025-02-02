@@ -1,5 +1,7 @@
 from django.shortcuts import get_object_or_404
 from django.http import HttpResponseRedirect
+from django.http import HttpResponseForbidden
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import TemplateView, CreateView, ListView, DeleteView
 from django.urls import reverse_lazy
 from .models import Comment
@@ -21,11 +23,15 @@ class CommentPageView(CreateView, ListView):
         context["comments"] = Comment.objects.all().order_by("-created_at")
         return context
 
-class CommentDeleteView(DeleteView):
+class CommentDeleteView(LoginRequiredMixin, DeleteView):
     model = Comment
     success_url = reverse_lazy("comments")
 
-    def get(self, request, *args, **kwargs):
+    def dispatch(self, request, *args, **kwargs):
+        """投稿者以外が削除しようとした場合は拒否"""
         comment = get_object_or_404(Comment, pk=kwargs["pk"])
-        comment.delete()
-        return HttpResponseRedirect(self.success_url)
+
+        if comment.user != self.request.user:  # 投稿者チェック
+            return HttpResponseForbidden("このコメントを削除する権限がありません。")
+
+        return super().dispatch(request, *args, **kwargs)

@@ -24,10 +24,12 @@
             <strong>{{ comment.name }}</strong> <span class="comment-date">{{ comment.created_at }}</span>
             <p>{{ comment.content }}</p>
 
-            <form method="post" action="{% url 'comment_delete' comment.pk %}" style="display:inline;">
-            {% csrf_token %}
-            <button type="submit" class="delete-button">削除</button>
-            </form>
+            {% if user.is_authenticated and user == comment.user %}  {# ログインしていて、投稿者なら表示 #}
+                <form method="post" action="{% url 'comment_delete' comment.pk %}" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="submit" class="delete-button">削除</button>
+                </form>
+            {% endif %}
         </li>
     {% endfor %}
 </ul>
